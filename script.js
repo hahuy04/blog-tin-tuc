@@ -1,5 +1,3 @@
-// Modern News Blog JavaScript
-
 class VietNewsBlog {
     constructor() {
         this.articles = [];
@@ -84,12 +82,10 @@ class VietNewsBlog {
             });
         }
 
-        // Sort by date initially
         this.articles.sort((a, b) => new Date(b.date) - new Date(a.date));
     }
 
     bindEvents() {
-        // Search functionality
         const searchInput = document.getElementById('searchInput');
         const searchBtn = document.getElementById('searchBtn');
         
@@ -98,7 +94,6 @@ class VietNewsBlog {
             if (e.key === 'Enter') this.handleSearch();
         });
 
-        // Category filtering
         document.querySelectorAll('[data-category]').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -106,34 +101,28 @@ class VietNewsBlog {
             });
         });
 
-        // Sorting
         document.querySelectorAll('[data-sort]').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 this.handleSort(e.target.dataset.sort);
             });
         });
 
-        // Theme toggle
         document.getElementById('themeToggle').addEventListener('click', () => {
             this.toggleTheme();
         });
 
-        // Load more button
         document.getElementById('loadMoreBtn').addEventListener('click', () => {
             this.loadMoreArticles();
         });
 
-        // Newsletter form
         document.getElementById('newsletterForm').addEventListener('submit', (e) => {
             this.handleNewsletter(e);
         });
 
-        // Back to top
         document.getElementById('backToTop').addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -195,7 +184,6 @@ class VietNewsBlog {
             container.insertAdjacentHTML('beforeend', articlesHTML);
         }
 
-        // Update load more button
         const loadMoreBtn = document.getElementById('loadMoreBtn');
         if (this.loadedArticles >= filteredArticles.length) {
             loadMoreBtn.style.display = 'none';
@@ -203,7 +191,6 @@ class VietNewsBlog {
             loadMoreBtn.style.display = 'block';
         }
 
-        // Trigger animations
         this.triggerAnimations();
     }
 
@@ -274,12 +261,10 @@ class VietNewsBlog {
     getFilteredArticles() {
         let filtered = [...this.articles];
 
-        // Filter by category
         if (this.currentCategory !== 'all') {
             filtered = filtered.filter(article => article.category === this.currentCategory);
         }
 
-        // Filter by search query
         if (this.searchQuery) {
             filtered = filtered.filter(article => 
                 article.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
@@ -288,7 +273,6 @@ class VietNewsBlog {
             );
         }
 
-        // Sort articles
         if (this.currentSort === 'newest') {
             filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
         } else if (this.currentSort === 'popular') {
@@ -314,7 +298,6 @@ class VietNewsBlog {
         this.loadedArticles = 0;
         this.renderArticles();
         
-        // Update active state in dropdown
         document.querySelectorAll('[data-category]').forEach(link => {
             link.classList.remove('active');
         });
@@ -330,7 +313,6 @@ class VietNewsBlog {
         this.loadedArticles = 0;
         this.renderArticles();
         
-        // Update active state
         document.querySelectorAll('[data-sort]').forEach(btn => {
             btn.classList.remove('active');
         });
@@ -346,7 +328,6 @@ class VietNewsBlog {
         const article = this.articles.find(a => a.id === id);
         if (!article) return;
 
-        // Increment view count
         article.views++;
 
         const modal = new bootstrap.Modal(document.getElementById('articleModal'));
@@ -400,7 +381,6 @@ class VietNewsBlog {
         
         modal.show();
         
-        // Update sidebar after view count change
         this.renderSidebar();
     }
 
@@ -422,7 +402,6 @@ class VietNewsBlog {
                 url: window.location.href
             });
         } else {
-            // Fallback: copy to clipboard
             navigator.clipboard.writeText(window.location.href);
             this.showToast('Đã sao chép liên kết!', 'info');
         }
@@ -456,7 +435,6 @@ class VietNewsBlog {
         const form = e.target;
         const email = form.querySelector('input[type="email"]').value;
         
-        // Simulate API call
         form.classList.add('loading');
         
         setTimeout(() => {
@@ -499,7 +477,6 @@ class VietNewsBlog {
                 });
             }, { threshold: 0.1 });
 
-            // Observe elements for animation
             setTimeout(() => {
                 document.querySelectorAll('.article-card, .sidebar-widget').forEach(el => {
                     el.style.opacity = '0';
@@ -512,7 +489,6 @@ class VietNewsBlog {
     }
 
     triggerAnimations() {
-        // Simple animation trigger for new elements
         const newElements = document.querySelectorAll('.article-card:not([data-animated])');
         newElements.forEach((el, index) => {
             el.setAttribute('data-animated', 'true');
@@ -589,12 +565,10 @@ class VietNewsBlog {
     }
 }
 
-// Initialize the blog when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     window.vietnewsBlog = new VietNewsBlog();
 });
 
-// Additional utility functions
 document.addEventListener('scroll', () => {
     const backToTopBtn = document.getElementById('backToTop');
     const navbar = document.querySelector('.navbar');
@@ -608,15 +582,12 @@ document.addEventListener('scroll', () => {
     }
 });
 
-// Keyboard shortcuts
 document.addEventListener('keydown', (e) => {
-    // Ctrl/Cmd + K for search
     if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
         e.preventDefault();
         document.getElementById('searchInput').focus();
     }
     
-    // Escape to close modals
     if (e.key === 'Escape') {
         const openModal = document.querySelector('.modal.show');
         if (openModal) {
@@ -625,7 +596,6 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Service Worker registration for offline support
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js')
