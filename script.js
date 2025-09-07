@@ -199,14 +199,12 @@ class VietNewsBlog {
 
         let paginationHTML = '<ul class="pagination">';
         
-        // Previous button
         paginationHTML += `
             <li class="page-item ${this.currentPage === 1 ? 'disabled' : ''}">
                 <a class="page-link" href="#" data-page="${this.currentPage - 1}">Trước</a>
             </li>
         `;
 
-        // Page numbers
         for (let i = 1; i <= totalPages; i++) {
             paginationHTML += `
                 <li class="page-item ${i === this.currentPage ? 'active' : ''}">
@@ -215,7 +213,6 @@ class VietNewsBlog {
             `;
         }
 
-        // Next button
         paginationHTML += `
             <li class="page-item ${this.currentPage === totalPages ? 'disabled' : ''}">
                 <a class="page-link" href="#" data-page="${this.currentPage + 1}">Sau</a>
@@ -505,7 +502,6 @@ class VietNewsBlog {
             form.classList.remove('was-validated');
             this.showToast('Bình luận của bạn đã được gửi!', 'success');
             
-            // Update comment count in title
             const commentTitle = document.querySelector('.comments-section h4');
             if(commentTitle) {
                 commentTitle.textContent = `Bình luận (${article.comments.length})`;
@@ -572,23 +568,108 @@ class VietNewsBlog {
     }
     
     setupIntersectionObserver() {
-        // Observer logic remains the same
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            setTimeout(() => {
+                document.querySelectorAll('.article-card, .sidebar-widget').forEach(el => {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(20px)';
+                    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    observer.observe(el);
+                });
+            }, 100);
+        }
     }
 
     triggerAnimations() {
-        // Animation logic remains the same
+        const newElements = document.querySelectorAll('.article-card:not([data-animated])');
+        newElements.forEach((el, index) => {
+            el.setAttribute('data-animated', 'true');
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            }, index * 100);
+        });
     }
 
     showToast(message, type = 'info') {
-        // Toast logic remains the same
+        const toastContainer = document.getElementById('toastContainer');
+        const toastId = 'toast-' + Date.now();
+        
+        const iconMap = {
+            success: 'bi-check-circle-fill text-success',
+            error: 'bi-x-circle-fill text-danger',
+            warning: 'bi-exclamation-triangle-fill text-warning',
+            info: 'bi-info-circle-fill text-info'
+        };
+        
+        const toast = document.createElement('div');
+        toast.className = 'toast show';
+        toast.id = toastId;
+        toast.innerHTML = `
+            <div class="toast-header">
+                <i class="bi ${iconMap[type]} me-2"></i>
+                <strong class="me-auto">VietNews</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body">
+                ${message}
+            </div>
+        `;
+        
+        toastContainer.appendChild(toast);
+        
+        const bsToast = new bootstrap.Toast(toast);
+        bsToast.show();
+        
+        toast.addEventListener('hidden.bs.toast', () => {
+            toast.remove();
+        });
     }
 
     formatDate(dateString) {
-        // Date formatting logic remains the same
+        if (!dateString) return '';
+        const date = new Date(dateString);
+        if (isNaN(date.getTime())) return '';
+
+        const now = new Date();
+        const diffTime = Math.abs(now - date);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        
+        if (diffDays <= 1) return 'Hôm nay';
+        if (diffDays === 2) return 'Hôm qua';
+        if (diffDays <= 7) return `${diffDays -1} ngày trước`;
+        
+        return date.toLocaleDateString('vi-VN', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
     }
 
     formatNumber(num) {
-        // Number formatting logic remains the same
+        if (typeof num !== 'number' || isNaN(num)) {
+            return '0';
+        }
+        if (num >= 1000000) {
+            return (num / 1000000).toFixed(1).replace('.0', '') + 'M';
+        }
+        if (num >= 1000) {
+            return (num / 1000).toFixed(1).replace('.0', '') + 'K';
+        }
+        return num.toString();
     }
 }
 
@@ -596,12 +677,39 @@ document.addEventListener('DOMContentLoaded', () => {
     window.vietnewsBlog = new VietNewsBlog();
 });
 
-// Event listeners for scroll and keydown remain the same
 document.addEventListener('scroll', () => {
     const backToTopBtn = document.getElementById('backToTop');
+    const navbar = document.querySelector('.navbar');
+    
     if (window.scrollY > 100) {
         backToTopBtn.style.opacity = '1';
     } else {
         backToTopBtn.style.opacity = '0.7';
     }
 });
+
+document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        document.getElementById('searchInput').focus();
+    }
+    
+    if (e.key === 'Escape') {
+        const openModal = document.querySelector('.modal.show');
+        if (openModal) {
+            bootstrap.Modal.getInstance(openModal).hide();
+        }
+    }
+});
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+                console.log('SW registered: ', registration);
+            })
+            .catch((registrationError) => {
+                console.log('SW registration failed: ', registrationError);
+            });
+    });
+}
