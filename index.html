@@ -11,7 +11,6 @@
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Thanh điều hướng -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
         <div class="container">
             <a class="navbar-brand fw-bold text-primary" href="#">
@@ -63,7 +62,6 @@
         </div>
     </nav>
 
-    <!-- Phần tiêu đề (Hero Section) -->
     <section class="hero-section" id="home">
         <div class="container">
             <div class="row align-items-center min-vh-75">
@@ -93,25 +91,10 @@
         </div>
     </section>
 
-    <!-- Tin nổi bật (Breaking News) -->
-    <!-- <div class="breaking-news bg-primary text-white py-2">
-        <div class="container">
-            <div class="d-flex align-items-center">
-                <span class="badge bg-white text-primary me-3 px-3 py-2">TIN NỔI BẬT</span>
-                <div class="breaking-text flex-grow-1">
-                    <span id="breakingNewsText">Chính phủ công bố gói hỗ trợ kinh tế mới trị giá 120.000 tỷ đồng</span>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
-    <!-- Nội dung chính -->
     <section class="py-5" id="news">
         <div class="container">
             <div class="row">
-                <!-- Bài viết chính -->
                 <div class="col-lg-8">
-                    <!-- Thanh lọc tin -->
                     <div class="filter-bar d-flex justify-content-between align-items-center mb-4">
                         <h2 class="h4 fw-semibold mb-0">Tin tức mới nhất</h2>
                         <div class="filter-controls">
@@ -126,53 +109,39 @@
                         </div>
                     </div>
                     
-                    <!-- Khu vực hiển thị bài viết -->
                     <div id="articlesContainer" class="articles-grid">
-                        <!-- Các bài viết sẽ được tải động ở đây -->
-                    </div>
+                        </div>
                     
-                    <!-- Nút xem thêm -->
-                    <div class="text-center mt-5">
-                        <button class="btn btn-outline-primary btn-lg" id="loadMoreBtn">
-                            <i class="bi bi-arrow-down-circle me-2"></i>Xem thêm tin tức
-                        </button>
-                    </div>
+                    <nav id="paginationContainer" aria-label="Page navigation" class="d-flex justify-content-center mt-5">
+                        </nav>
                 </div>
                 
-                <!-- Thanh bên (Sidebar) -->
                 <div class="col-lg-4">
                     <div class="sidebar">
-                        <!-- Chủ đề nổi bật -->
                         <div class="sidebar-widget mb-4">
                             <h5 class="widget-title">
                                 <i class="bi bi-fire text-danger me-2"></i>Chủ đề nổi bật
                             </h5>
                             <div class="trending-topics" id="trendingTopics">
-                                <!-- Chủ đề nổi bật sẽ được tải ở đây -->
-                            </div>
+                                </div>
                         </div>
                         
-                        <!-- Tin mới cập nhật -->
                         <div class="sidebar-widget mb-4">
                             <h5 class="widget-title">
                                 <i class="bi bi-clock-history me-2"></i>Tin mới cập nhật
                             </h5>
                             <div id="recentPosts" class="recent-posts">
-                                <!-- Tin mới sẽ được tải ở đây -->
-                            </div>
+                                </div>
                         </div>
                         
-                        <!-- Danh sách chuyên mục -->
                         <div class="sidebar-widget mb-4">
                             <h5 class="widget-title">
                                 <i class="bi bi-grid-3x3-gap me-2"></i>Chuyên mục
                             </h5>
                             <div class="categories-list" id="categoriesList">
-                                <!-- Danh sách chuyên mục sẽ được tải ở đây -->
-                            </div>
+                                </div>
                         </div>
                         
-                        <!-- Đăng ký nhận tin -->
                         <div class="sidebar-widget newsletter-widget">
                             <div class="newsletter-content">
                                 <h5 class="widget-title text-white">
@@ -197,7 +166,6 @@
         </div>
     </section>
 
-    <!-- Giới thiệu -->
     <section class="py-5 bg-light" id="about">
         <div class="container">
             <div class="row align-items-center">
@@ -250,7 +218,6 @@
         </div>
     </section>
 
-    <!-- Chân trang -->
     <footer class="bg-dark text-white py-5">
         <div class="container">
             <div class="row">
@@ -326,7 +293,6 @@
         </div>
     </footer>
 
-    <!-- Modal xem bài viết -->
     <div class="modal fade" id="articleModal" tabindex="-1">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content border-0">
@@ -335,14 +301,12 @@
                 </div>
                 <div class="modal-body px-4">
                     <div id="modalContent">
-                        <!-- Nội dung bài viết sẽ được tải ở đây -->
-                    </div>
+                        </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Khu vực hiển thị thông báo (toast) -->
     <div class="toast-container position-fixed top-0 end-0 p-3" id="toastContainer">
     </div>
 
