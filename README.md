@@ -39,5 +39,3 @@ Trang web được thiết kế theo phong cách hiện đại, responsive, hỗ
 
 ---
 
-## 📂 Cấu trúc dự án
-
