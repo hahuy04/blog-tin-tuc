@@ -320,12 +320,14 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     align-items: center;
     gap: 1rem;
+    min-width: 0;
 }
 
 .article-meta .meta-right {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    flex-shrink: 0;
 }
 
 /* Nhãn chuyên mục */
