@@ -1,4 +1,4 @@
-/* Modern News Blog Styles */
+/* Giao diện Blog Tin Tức Hiện Đại */
 
 :root {
     --primary-color: #2563eb;
@@ -25,6 +25,7 @@
     --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Chủ đề tối */
 [data-theme="dark"] {
     --bs-body-bg: #0f172a;
     --bs-body-color: #f1f5f9;
@@ -46,7 +47,7 @@ body {
     transition: var(--transition);
 }
 
-/* Typography */
+/* Kiểu chữ */
 h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
     line-height: 1.3;
@@ -57,7 +58,7 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--primary-color) !important;
 }
 
-/* Navigation */
+/* Thanh điều hướng */
 .navbar {
     backdrop-filter: blur(10px);
     background-color: rgba(255, 255, 255, 0.95) !important;
@@ -114,7 +115,7 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--primary-color);
 }
 
-/* Search */
+/* Ô tìm kiếm */
 .search-container .form-control {
     border-radius: 25px;
     padding: 0.75rem 1rem;
@@ -135,7 +136,7 @@ h1, h2, h3, h4, h5, h6 {
     background-color: var(--gray-50);
 }
 
-/* Theme Toggle */
+/* Nút chuyển đổi giao diện sáng/tối */
 #themeToggle {
     width: 40px;
     height: 40px;
@@ -151,7 +152,7 @@ h1, h2, h3, h4, h5, h6 {
     transform: scale(1.05);
 }
 
-/* Hero Section */
+/* Phần tiêu đề (Hero Section) */
 .hero-section {
     padding: 5rem 0;
     background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
@@ -195,7 +196,7 @@ h1, h2, h3, h4, h5, h6 {
     transform: scale(1.02);
 }
 
-/* Breaking News */
+/* Tin nổi bật (Breaking News) */
 .breaking-news {
     background: linear-gradient(135deg, var(--primary-color) 0%, #1d4ed8 100%);
     animation: slideIn 0.5s ease-out;
@@ -222,7 +223,7 @@ h1, h2, h3, h4, h5, h6 {
     to { transform: translateY(0); }
 }
 
-/* Filter Bar */
+/* Thanh lọc tin */
 .filter-bar {
     padding: 1.5rem 0;
     border-bottom: 1px solid var(--gray-200);
@@ -244,7 +245,7 @@ h1, h2, h3, h4, h5, h6 {
     color: white;
 }
 
-/* Articles Grid */
+/* Lưới bài viết */
 .articles-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -327,7 +328,7 @@ h1, h2, h3, h4, h5, h6 {
     gap: 0.5rem;
 }
 
-/* Category Badges */
+/* Nhãn chuyên mục */
 .category-badge {
     display: inline-block;
     padding: 0.25rem 0.75rem;
@@ -350,7 +351,7 @@ h1, h2, h3, h4, h5, h6 {
 .category-cong-nghe { background-color: #f3f4f6; color: #6366f1; }
 .category-giai-tri { background-color: #fdf2f8; color: #ec4899; }
 
-/* Sidebar */
+/* Thanh bên (Sidebar) */
 .sidebar {
     position: sticky;
     top: 100px;
@@ -378,7 +379,7 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
 }
 
-/* Trending Topics */
+/* Chủ đề nổi bật */
 .trending-topics .trending-item {
     display: flex;
     align-items: center;
@@ -421,7 +422,7 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.4;
 }
 
-/* Recent Posts */
+/* Tin mới cập nhật */
 .recent-posts .recent-post {
     display: flex;
     align-items: flex-start;
@@ -464,7 +465,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.8rem;
 }
 
-/* Categories List */
+/* Danh sách chuyên mục */
 .categories-list .category-item {
     display: flex;
     align-items: center;
@@ -498,7 +499,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 500;
 }
 
-/* Newsletter Widget */
+/* Widget đăng ký nhận tin */
 .newsletter-widget {
     background: linear-gradient(135deg, var(--primary-color) 0%, #1d4ed8 100%);
     color: white;
@@ -523,7 +524,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
 }
 
-/* About Section */
+/* Phần giới thiệu */
 .about-content .features-list {
     margin-top: 2rem;
 }
@@ -548,7 +549,7 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--gray-900);
 }
 
-/* Footer */
+/* Chân trang */
 footer {
     background: linear-gradient(135deg, var(--gray-900) 0%, var(--gray-800) 100%);
 }
@@ -594,7 +595,7 @@ footer {
     margin-bottom: 0.5rem;
 }
 
-/* Load More Button */
+/* Nút xem thêm */
 #loadMoreBtn {
     padding: 1rem 2rem;
     font-weight: 600;
@@ -607,7 +608,7 @@ footer {
     box-shadow: var(--box-shadow-lg);
 }
 
-/* Modal */
+/* Modal xem bài viết */
 .modal-content {
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow-lg);
@@ -621,14 +622,14 @@ footer {
     padding: 1.5rem;
 }
 
-/* Toast */
+/* Thông báo (Toast) */
 .toast {
     border: none;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow-lg);
 }
 
-/* Back to Top */
+/* Nút về đầu trang */
 #backToTop {
     transition: var(--transition);
 }
@@ -637,7 +638,7 @@ footer {
     transform: translateY(-2px);
 }
 
-/* Loading States */
+/* Trạng thái đang tải */
 .loading {
     position: relative;
     pointer-events: none;
@@ -663,7 +664,7 @@ footer {
     100% { transform: rotate(360deg); }
 }
 
-/* Dark Theme */
+/* Chủ đề tối */
 [data-theme="dark"] {
     background-color: var(--bs-body-bg);
     color: var(--bs-body-color);
@@ -697,7 +698,7 @@ footer {
     color: var(--bs-body-color);
 }
 
-/* Responsive Design */
+/* Giao diện đáp ứng (Responsive Design) */
 @media (max-width: 768px) {
     .hero-content h1 {
         font-size: 2.5rem;
@@ -752,7 +753,7 @@ footer {
     }
 }
 
-/* Accessibility */
+/* Hỗ trợ tiếp cận (Accessibility) */
 @media (prefers-reduced-motion: reduce) {
     * {
         animation-duration: 0.01ms !important;
@@ -761,7 +762,7 @@ footer {
     }
 }
 
-/* Focus styles for accessibility */
+/* Kiểu focus cho accessibility */
 button:focus,
 .btn:focus,
 a:focus,
@@ -771,7 +772,7 @@ textarea:focus {
     outline-offset: 2px;
 }
 
-/* Print styles */
+/* Kiểu in ấn (Print styles) */
 @media print {
     .navbar,
     .sidebar,
