@@ -253,7 +253,7 @@ function setupPagination() {
     if (startPage > 1) {
         paginationHtml += `
             <li class="page-item">
-                <a class="page-link" href="#" onclick="changePage(1)">1</a>
+                <a class="page-link" onclick="changePage(1)">1</a>
             </li>
         `;
         if (startPage > 2) {
@@ -264,7 +264,7 @@ function setupPagination() {
     for (let i = startPage; i <= endPage; i++) {
         paginationHtml += `
             <li class="page-item ${i === currentPage ? 'active' : ''}">
-                <a class="page-link" href="#" onclick="changePage(${i})">${i}</a>
+                <a class="page-link"  onclick="changePage(${i})">${i}</a>
             </li>
         `;
     }
@@ -275,7 +275,7 @@ function setupPagination() {
         }
         paginationHtml += `
             <li class="page-item">
-                <a class="page-link" href="#" onclick="changePage(${totalPages})">${totalPages}</a>
+                <a class="page-link" onclick="changePage(${totalPages})">${totalPages}</a>
             </li>
         `;
     }
@@ -284,7 +284,7 @@ function setupPagination() {
     if (currentPage < totalPages) {
         paginationHtml += `
             <li class="page-item">
-                <a class="page-link" href="#" onclick="changePage(${currentPage + 1})">
+                <a class="page-link" onclick="changePage(${currentPage + 1})">
                     <i class="fas fa-chevron-right"></i>
                 </a>
             </li>
@@ -335,6 +335,14 @@ function loadPopularNews() {
     });
     
     container.innerHTML = popularHtml;
+}
+function changePage(page, event) {
+    if (event) event.preventDefault(); // chặn reload mặc định
+    currentPage = page;
+    displayArticles();
+    setupPagination();
+
+    document.getElementById('newsContainer').scrollIntoView({ behavior: 'smooth' });
 }
 
 // Open News Modal
