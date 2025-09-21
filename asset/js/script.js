@@ -1,10 +1,10 @@
-// Global variables
+// Biến toàn cục
 let currentPage = 1;
 const articlesPerPage = 6;
 let allArticles = [];
 let filteredArticles = [];
 
-// Sample news data
+// Dữ liệu tin tức mẫu
 const newsData = [
     {
         id: 1,
@@ -116,20 +116,20 @@ const newsData = [
     },
 ];
 
-// DOM Content Loaded
+// Nội dung DOM đã được tải
 document.addEventListener('DOMContentLoaded', function () {
     initializeApp();
 });
 
-// Initialize Application
+// Khởi tạo ứng dụng
 function initializeApp() {
     showPageLoader();
 
-    // Initialize data
+    // Khởi tạo dữ liệu
     allArticles = [...newsData];
     filteredArticles = [...allArticles];
 
-    // Load page-specific content
+    // Tải nội dung cụ thể của trang
     if (document.getElementById('newsContainer')) {
         loadNewsArticles();
         loadPopularNews();
@@ -147,15 +147,15 @@ function initializeApp() {
         setupReadingProgress();
     }
 
-    // Initialize common features
+    // Khởi tạo các tính năng chung
     setupProgressBar();
     setupSearch();
 
-    // Hide loader after content is loaded
+    // Ẩn trình tải sau khi nội dung được tải
     setTimeout(hidePageLoader, 1000);
 }
 
-// Page Loader Functions
+// Chức năng tải trang
 function showPageLoader() {
     const loader = document.getElementById('pageLoader');
     if (loader) {
@@ -173,7 +173,7 @@ function hidePageLoader() {
     }
 }
 
-// Progress Bar Setup
+// Thiết lập thanh tiến trình
 function setupProgressBar() {
     const progressBar = document.getElementById('progressBar');
     if (!progressBar) return;
@@ -185,7 +185,7 @@ function setupProgressBar() {
     });
 }
 
-// Load News Articles
+// Tải bài viết tin tức
 function loadNewsArticles() {
     const container = document.getElementById('newsContainer');
     if (!container) return;
@@ -198,7 +198,7 @@ function loadNewsArticles() {
     }, 500);
 }
 
-// Display Articles
+// Hiển thị bài viết
 function displayArticles() {
     const container = document.getElementById('newsContainer');
     const startIndex = (currentPage - 1) * articlesPerPage;
@@ -247,7 +247,7 @@ function displayArticles() {
     });
 }
 
-// Setup Pagination
+// Thiết lập phân trang
 function setupPagination() {
     const paginationContainer = document.getElementById('newsPagination');
     if (!paginationContainer) return;
@@ -255,7 +255,7 @@ function setupPagination() {
     const totalPages = Math.ceil(filteredArticles.length / articlesPerPage);
     let paginationHtml = '';
 
-    // Previous button
+    // Nút trước
     if (currentPage > 1) {
         paginationHtml += `
             <li class="page-item">
@@ -266,7 +266,7 @@ function setupPagination() {
         `;
     }
 
-    // Page numbers
+    // Số trang
     const startPage = Math.max(1, currentPage - 2);
     const endPage = Math.min(totalPages, currentPage + 2);
 
@@ -300,7 +300,7 @@ function setupPagination() {
         `;
     }
 
-    // Next button
+    // Nút tiếp theo
     if (currentPage < totalPages) {
         paginationHtml += `
             <li class="page-item">
@@ -314,17 +314,17 @@ function setupPagination() {
     paginationContainer.innerHTML = paginationHtml;
 }
 
-// Change Page
+// Thay đổi trang
 function changePage(page) {
     currentPage = page;
     displayArticles();
     setupPagination();
 
-    // Smooth scroll to news container
+    // Cuộn mượt mà đến vùng chứa tin tức
     document.getElementById('newsContainer').scrollIntoView({ behavior: 'smooth' });
 }
 
-// Load Popular News
+// Tải tin tức phổ biến
 function loadPopularNews() {
     const container = document.getElementById('popularNews');
     if (!container) return;
