@@ -12,21 +12,28 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
 </head>
 <body data-bs-spy="scroll" data-bs-target="#navbarNav">
+    
+    <!-- Thanh trên cùng (Load để đọc) -->
     <div class="reading-progress">
         <div class="reading-progress-bar" id="readingProgress"></div>
     </div>
     
+    <!-- Header -->
     <header>
+        <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm border-bottom">
             <div class="container">
+                <!-- Logo -->
                 <a class="navbar-brand fw-bold text-primary" href="#">
                     <i class="bi bi-newspaper me-2"></i>VietNews
                 </a>
                 
+                <!-- 3 Gạch (Thu nhỏ sẽ thấy) -->
                 <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 
+                <!-- Start Menu -->
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
@@ -38,6 +45,7 @@
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-nav="categories">
                                 <i class="bi bi-grid-3x3-gap me-1"></i>Chuyên mục
                             </a>
+                            <!-- Dropdown Menu -->
                             <ul class="dropdown-menu border-0 shadow">
                                 <li><a class="dropdown-item" href="#" data-category="all">Tất cả tin tức</a></li>
                                 <li><hr class="dropdown-divider"></li>
@@ -63,12 +71,14 @@
                     <div class="d-flex align-items-center">
                         <div class="search-container me-3">
                             <div class="input-group">
+                                <!-- Tìm kiếm -->
                                 <input type="text" class="form-control border-0 bg-light" placeholder="Tìm kiếm..." id="searchInput">
                                 <button class="btn btn-light border-0" type="button" id="searchBtn">
                                     <i class="bi bi-search text-muted"></i>
                                 </button>
                             </div>
                         </div>
+                        <!-- Icon Dark mode -->
                         <button class="btn btn-outline-secondary border-0" id="themeToggle">
                             <i class="bi bi-moon" id="themeIcon"></i>
                         </button>
@@ -78,7 +88,9 @@
         </nav>
     </header>
 
+    <!-- Main -->
     <main>
+        <!-- Sử dụng thư viện swiper để tạo slide -->
         <section class="hero-section" id="home">
             <div class="container">
                 <div class="hero-slider">
@@ -163,6 +175,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Các nút điều hướng của swiper (js thực hiện từ dòng 26 - 63) -->
                         <div class="swiper-pagination"></div>
                         <div class="swiper-button-next"></div>
                         <div class="swiper-button-prev"></div>
@@ -171,6 +184,7 @@
             </div>
         </section>
 
+        <!-- Chữ chạy dưới cái sile -->
         <div class="breaking-news bg-primary text-white py-2">
             <div class="container">
                 <div class="d-flex align-items-center">
@@ -203,6 +217,7 @@
                         <div id="articlesContainer" class="articles-grid">
                         </div>
                         
+                        <!-- pagination (Phần có số 1 2 3 để chuyển trang) -->
                         <div class="d-flex justify-content-center mt-5">
                             <nav aria-label="Page navigation">
                                 <ul class="pagination pagination-lg" id="paginationContainer">
@@ -211,6 +226,7 @@
                         </div>
                     </div>
                     
+                    <!-- Thanh bên -->
                     <aside class="col-lg-4">
                         <div class="sidebar">
                             <div class="sidebar-widget mb-4">
@@ -227,6 +243,7 @@
                                 </h5>
                                 <div class="loading-progress mb-3">
                                     <div class="progress" style="height: 4px;">
+                                        <!-- Thanh chạy chạy. Gọi là progress-bar -->
                                         <div class="progress-bar progress-bar-striped progress-bar-animated" 
                                              role="progressbar" style="width: 100%"></div>
                                     </div>
@@ -242,18 +259,21 @@
                                 <div class="category-stats mb-3">
                                     <div class="stats-item">
                                         <span class="stats-label">Thời sự</span>
+                                        <!-- Thanh chạy chạy. Gọi là progress-bar màu bg-danger-->
                                         <div class="progress" style="height: 6px;">
                                             <div class="progress-bar bg-danger" style="width: 25%"></div>
                                         </div>
                                     </div>
                                     <div class="stats-item">
                                         <span class="stats-label">Kinh tế</span>
+                                        <!-- Thanh chạy chạy. Gọi là progress-bar màu bg-success-->
                                         <div class="progress" style="height: 6px;">
                                             <div class="progress-bar bg-success" style="width: 20%"></div>
                                         </div>
                                     </div>
                                     <div class="stats-item">
                                         <span class="stats-label">Công nghệ</span>
+                                        <!-- Thanh chạy chạy. Gọi là progress-bar màu bg-primary-->
                                         <div class="progress" style="height: 6px;">
                                             <div class="progress-bar bg-primary" style="width: 30%"></div>
                                         </div>
@@ -271,6 +291,7 @@
                                     <p class="text-white-50 small mb-3">
                                         Đăng ký để nhận những tin tức quan trọng nhất mỗi ngày
                                     </p>
+                                    <!-- Form nhận tin mới thanh bên. -->
                                     <form id="newsletterForm">
                                         <div class="input-group mb-3">
                                             <input type="email" class="form-control border-0" placeholder="Email của bạn" required>
@@ -286,6 +307,7 @@
                 </div>
             </div>
         </section>
+
 
         <section class="py-5 bg-light" id="about">
             <div class="container">
@@ -392,6 +414,7 @@
         </section>
     </main>
 
+    <!-- Footer -->
     <footer class="bg-dark text-white py-5">
         <div class="container">
             <div class="row">
@@ -467,6 +490,8 @@
         </div>
     </footer>
 
+
+    <!-- Nhấn vào article-card thì ra  modal, phần này là modal.-->
     <div class="modal fade" id="articleModal" tabindex="-1">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content border-0">

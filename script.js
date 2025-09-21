@@ -1,6 +1,4 @@
-// Modern News Blog JavaScript
-
-class VietNewsBlog {
+    class VietNewsBlog {
     constructor() {
         this.articles = [];
         this.currentPage = 1;
