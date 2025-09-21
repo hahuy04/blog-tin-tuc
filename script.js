@@ -1,4 +1,4 @@
-    class VietNewsBlog {
+class VietNewsBlog {
     constructor() {
         this.articles = [];
         this.currentPage = 1;
@@ -244,7 +244,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <a href="#" class="category-badge ${article.categoryClass}" onclick="vietnewsBlog.filterByCategory('${article.category}')">${article.categoryName}</a>
+                    <a href="#" class="category-badge ${article.categoryClass}" onclick="event.stopPropagation(); vietnewsBlog.filterByCategory('${article.category}')">${article.categoryName}</a>
                     <h3 class="card-title">
                         <a class="text-decoration-none text-dark">${article.title}</a>
                     </h3>
@@ -256,8 +256,8 @@
                             <span><i class="bi bi-clock"></i> ${article.readTime} phút đọc</span>
                         </div>
                         <div class="meta-right">
-                            <button class="btn btn-sm btn-outline-primary" onclick="vietnewsBlog.likeArticle(${article.id})">
-                                <i class="bi bi-heart"></i> ${article.likes}
+                            <button class="btn btn-sm btn-outline-primary" onclick="event.stopPropagation(); vietnewsBlog.likeArticle(${article.id})">
+                                <i class="bi bi-heart"></i> <span id="like-count-card-${article.id}">${article.likes}</span>
                             </button>
                         </div>
                     </div>
@@ -372,7 +372,7 @@
         
         paginationHTML += `
             <li class="page-item ${this.currentPage === 1 ? 'disabled' : ''}">
-                <a class="page-link" href="#" onclick="vietnewsBlog.goToPage(${this.currentPage - 1})">
+                <a class="page-link" href="#" onclick="event.preventDefault(); vietnewsBlog.goToPage(${this.currentPage - 1})">
                     <i class="bi bi-chevron-left"></i>
                 </a>
             </li>
@@ -384,7 +384,7 @@
         if (startPage > 1) {
             paginationHTML += `
                 <li class="page-item">
-                    <a class="page-link" href="#" onclick="vietnewsBlog.goToPage(1)">1</a>
+                    <a class="page-link" href="#" onclick="event.preventDefault(); vietnewsBlog.goToPage(1)">1</a>
                 </li>
             `;
             if (startPage > 2) {
@@ -395,7 +395,7 @@
         for (let i = startPage; i <= endPage; i++) {
             paginationHTML += `
                 <li class="page-item ${i === this.currentPage ? 'active' : ''}">
-                    <a class="page-link" href="#" onclick="vietnewsBlog.goToPage(${i})">${i}</a>
+                    <a class="page-link" href="#" onclick="event.preventDefault(); vietnewsBlog.goToPage(${i})">${i}</a>
                 </li>
             `;
         }
@@ -406,14 +406,14 @@
             }
             paginationHTML += `
                 <li class="page-item">
-                    <a class="page-link" href="#" onclick="vietnewsBlog.goToPage(${this.totalPages})">${this.totalPages}</a>
+                    <a class="page-link" href="#" onclick="event.preventDefault(); vietnewsBlog.goToPage(${this.totalPages})">${this.totalPages}</a>
                 </li>
             `;
         }
         
         paginationHTML += `
             <li class="page-item ${this.currentPage === this.totalPages ? 'disabled' : ''}">
-                <a class="page-link" href="#" onclick="vietnewsBlog.goToPage(${this.currentPage + 1})">
+                <a class="page-link" href="#" onclick="event.preventDefault(); vietnewsBlog.goToPage(${this.currentPage + 1})">
                     <i class="bi bi-chevron-right"></i>
                 </a>
             </li>
@@ -427,6 +427,9 @@
         
         this.currentPage = page;
         this.renderArticles();
+        
+        // FIX: Scroll to the top of the articles container after changing the page
+        document.getElementById('articlesContainer').scrollIntoView({ behavior: 'smooth' });
     }
 
     handleSearch() {
@@ -448,10 +451,13 @@
         document.querySelectorAll('[data-category]').forEach(link => {
             link.classList.remove('active');
         });
-        document.querySelector(`[data-category="${category}"]`).classList.add('active');
+        const activeLink = document.querySelector(`[data-category="${category}"]`);
+        if (activeLink) {
+            activeLink.classList.add('active');
+        }
         
         const categoryName = category === 'all' ? 'Tất cả tin tức' : 
-            document.querySelector(`[data-category="${category}"]`).textContent;
+            (activeLink ? activeLink.textContent : '');
         this.showToast(`Đang hiển thị: ${categoryName}`, 'info');
     }
 
@@ -472,7 +478,11 @@
 
         article.views++;
 
-        const modal = new bootstrap.Modal(document.getElementById('articleModal'));
+        const modalElement = document.getElementById('articleModal');
+        // FIX: Set articleId on the modal element to be used by the comment form
+        modalElement.dataset.articleId = id;
+
+        const modal = new bootstrap.Modal(modalElement);
         const modalContent = document.getElementById('modalContent');
         
         modalContent.innerHTML = `
@@ -505,7 +515,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="article-engagement">
                             <button class="btn btn-outline-primary me-2" onclick="vietnewsBlog.likeArticle(${article.id})">
-                                <i class="bi bi-heart"></i> Thích (${article.likes})
+                                <i class="bi bi-heart"></i> Thích (<span id="like-count-modal-${article.id}">${article.likes}</span>)
                             </button>
                             <button class="btn btn-outline-success me-2" onclick="vietnewsBlog.shareArticle(${article.id})">
                                 <i class="bi bi-share"></i> Chia sẻ
@@ -530,10 +540,21 @@
 
     likeArticle(id) {
         const article = this.articles.find(a => a.id === id);
-        if (article) {
-            article.likes++;
-            this.renderArticles();
-            this.showToast('Đã thích bài viết!', 'success');
+        if (!article) return;
+
+        article.likes++;
+        this.showToast('Đã thích bài viết!', 'success');
+
+        // FIX: Update like count on the card without re-rendering everything
+        const cardLikeCount = document.getElementById(`like-count-card-${id}`);
+        if (cardLikeCount) {
+            cardLikeCount.textContent = article.likes;
+        }
+
+        // FIX: Update like count in the modal if it's open
+        const modalLikeCount = document.getElementById(`like-count-modal-${id}`);
+        if (modalLikeCount) {
+            modalLikeCount.textContent = article.likes;
         }
     }
 
@@ -588,6 +609,7 @@
             return;
         }
         
+        // FIX: Correctly get articleId from the modal's dataset
         const modal = document.getElementById('articleModal');
         const articleId = modal.dataset.articleId;
         
@@ -918,15 +940,6 @@ document.addEventListener('scroll', () => {
     });
 });
 
-document.addEventListener('show.bs.modal', (e) => {
-    if (e.target.id === 'articleModal') {
-        const articleId = e.relatedTarget?.dataset?.articleId;
-        if (articleId) {
-            e.target.dataset.articleId = articleId;
-        }
-    }
-});
-
 document.addEventListener('keydown', (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
         e.preventDefault();
@@ -948,15 +961,3 @@ document.addEventListener('keydown', (e) => {
         }
     }
 });
-
-// if ('serviceWorker' in navigator) {
-//     window.addEventListener('load', () => {
-//         navigator.serviceWorker.register('/sw.js')
-//             .then((registration) => {
-//                 console.log('SW registered: ', registration);
-//             })
-//             .catch((registrationError) => {
-//                 console.log('SW registration failed: ', registrationError);
-//             });
-//     });
-// }
