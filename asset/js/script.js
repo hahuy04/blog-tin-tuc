@@ -15,7 +15,8 @@ const newsData = [
         date: "15/01/2025",
         author: "Nguyễn Văn An",
         views: 1250,
-        featured: true
+        featured: true,
+        detailUrl: "detail.html"
     },
     {
         id: 2,
@@ -26,7 +27,8 @@ const newsData = [
         date: "14/01/2025",
         author: "Trần Thị Lan",
         views: 980,
-        featured: true
+        featured: true,
+        detailUrl: "detail.html"
     },
     {
         id: 3,
@@ -37,7 +39,8 @@ const newsData = [
         date: "13/01/2025",
         author: "Lê Minh Tú",
         views: 2150,
-        featured: true
+        featured: true,
+        detailUrl: "detail.html"
     },
     {
         id: 4,
@@ -48,7 +51,8 @@ const newsData = [
         date: "12/01/2025",
         author: "Phạm Văn Bình",
         views: 1680,
-        featured: false
+        featured: false,
+        detailUrl: "detail.html"
     },
     {
         id: 5,
@@ -59,7 +63,8 @@ const newsData = [
         date: "11/01/2025",
         author: "Nguyễn Thu Hà",
         views: 750,
-        featured: false
+        featured: false,
+        detailUrl: "detail.html"
     },
     {
         id: 6,
@@ -70,7 +75,8 @@ const newsData = [
         date: "10/01/2025",
         author: "Vũ Thị Mai",
         views: 920,
-        featured: false
+        featured: false,
+        detailUrl: "detail.html"
     },
     {
         id: 7,
@@ -81,7 +87,8 @@ const newsData = [
         date: "09/01/2025",
         author: "Hoàng Văn Đức",
         views: 1420,
-        featured: false
+        featured: false,
+        detailUrl: "detail.html"
     },
     {
         id: 8,
@@ -92,45 +99,58 @@ const newsData = [
         date: "08/01/2025",
         author: "TS. Lê Thị Hoa",
         views: 2300,
-        featured: false
+        featured: false,
+        detailUrl: "detail.html"
+    },
+    {
+        id: 9,
+        title: "Sơn Đoòng được vinh danh là hang động đẹp nhất thế giới",
+        summary: "Tạp chí du lịch Anh quốc Wanderlust vừa công bố danh sách các hang động kỳ vĩ nhất, trong đó Sơn Đoòng của Việt Nam chiếm vị trí đầu tiên.",
+        category: "Du lịch",
+        image: "../asset/img/son-doong.jpg",
+        date: "16/01/2025",
+        author: "Trần Hùng",
+        views: 1850,
+        featured: true,
+        detailUrl: "detail-sondoong.html"
     },
 ];
 
 // DOM Content Loaded
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     initializeApp();
 });
 
 // Initialize Application
 function initializeApp() {
     showPageLoader();
-    
+
     // Initialize data
     allArticles = [...newsData];
     filteredArticles = [...allArticles];
-    
+
     // Load page-specific content
     if (document.getElementById('newsContainer')) {
         loadNewsArticles();
         loadPopularNews();
         setupNewsletterForm();
     }
-    
+
     if (document.getElementById('contactForm')) {
         setupContactForm();
         setupMessageCounter();
     }
-    
+
     if (document.getElementById('relatedArticles')) {
         loadRelatedArticles();
         loadMostReadArticles();
         setupReadingProgress();
     }
-    
+
     // Initialize common features
     setupProgressBar();
     setupSearch();
-    
+
     // Hide loader after content is loaded
     setTimeout(hidePageLoader, 1000);
 }
@@ -157,7 +177,7 @@ function hidePageLoader() {
 function setupProgressBar() {
     const progressBar = document.getElementById('progressBar');
     if (!progressBar) return;
-    
+
     window.addEventListener('scroll', () => {
         const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         const scrolled = (window.scrollY / windowHeight) * 100;
@@ -169,9 +189,9 @@ function setupProgressBar() {
 function loadNewsArticles() {
     const container = document.getElementById('newsContainer');
     if (!container) return;
-    
+
     container.innerHTML = '<div class="text-center"><div class="spinner-border text-primary" role="status"></div></div>';
-    
+
     setTimeout(() => {
         displayArticles();
         setupPagination();
@@ -184,9 +204,9 @@ function displayArticles() {
     const startIndex = (currentPage - 1) * articlesPerPage;
     const endIndex = startIndex + articlesPerPage;
     const articlesToShow = filteredArticles.slice(startIndex, endIndex);
-    
+
     container.innerHTML = '';
-    
+
     articlesToShow.forEach((article, index) => {
         const articleHtml = `
             <div class="col-md-6 col-lg-4 mb-4 fade-in-up" style="animation-delay: ${index * 0.1}s">
@@ -214,7 +234,7 @@ function displayArticles() {
                                 <button class="btn btn-outline-primary btn-sm" onclick="openNewsModal('${article.id}')">
                                     <i class="fas fa-eye me-1"></i>Xem nhanh
                                 </button>
-                                <a href="detail.html" class="btn btn-primary btn-sm">
+                                <a href="${article.detailUrl}" class="btn btn-primary btn-sm">
                                     <i class="fas fa-arrow-right me-1"></i>Đọc thêm
                                 </a>
                             </div>
@@ -231,10 +251,10 @@ function displayArticles() {
 function setupPagination() {
     const paginationContainer = document.getElementById('newsPagination');
     if (!paginationContainer) return;
-    
+
     const totalPages = Math.ceil(filteredArticles.length / articlesPerPage);
     let paginationHtml = '';
-    
+
     // Previous button
     if (currentPage > 1) {
         paginationHtml += `
@@ -245,11 +265,11 @@ function setupPagination() {
             </li>
         `;
     }
-    
+
     // Page numbers
     const startPage = Math.max(1, currentPage - 2);
     const endPage = Math.min(totalPages, currentPage + 2);
-    
+
     if (startPage > 1) {
         paginationHtml += `
             <li class="page-item">
@@ -260,7 +280,7 @@ function setupPagination() {
             paginationHtml += `<li class="page-item disabled"><span class="page-link">...</span></li>`;
         }
     }
-    
+
     for (let i = startPage; i <= endPage; i++) {
         paginationHtml += `
             <li class="page-item ${i === currentPage ? 'active' : ''}">
@@ -268,7 +288,7 @@ function setupPagination() {
             </li>
         `;
     }
-    
+
     if (endPage < totalPages) {
         if (endPage < totalPages - 1) {
             paginationHtml += `<li class="page-item disabled"><span class="page-link">...</span></li>`;
@@ -279,7 +299,7 @@ function setupPagination() {
             </li>
         `;
     }
-    
+
     // Next button
     if (currentPage < totalPages) {
         paginationHtml += `
@@ -290,7 +310,7 @@ function setupPagination() {
             </li>
         `;
     }
-    
+
     paginationContainer.innerHTML = paginationHtml;
 }
 
@@ -299,7 +319,7 @@ function changePage(page) {
     currentPage = page;
     displayArticles();
     setupPagination();
-    
+
     // Smooth scroll to news container
     document.getElementById('newsContainer').scrollIntoView({ behavior: 'smooth' });
 }
@@ -308,11 +328,11 @@ function changePage(page) {
 function loadPopularNews() {
     const container = document.getElementById('popularNews');
     if (!container) return;
-    
+
     const popularArticles = allArticles
         .sort((a, b) => b.views - a.views)
         .slice(0, 5);
-    
+
     let popularHtml = '';
     popularArticles.forEach((article, index) => {
         popularHtml += `
@@ -333,7 +353,7 @@ function loadPopularNews() {
             </div>
         `;
     });
-    
+
     container.innerHTML = popularHtml;
 }
 
@@ -341,13 +361,13 @@ function loadPopularNews() {
 function openNewsModal(newsId) {
     const article = allArticles.find(a => a.id == newsId);
     if (!article) return;
-    
+
     const modal = document.getElementById('newsModal');
     const title = document.getElementById('newsModalTitle');
     const body = document.getElementById('newsModalBody');
-    
+
     title.textContent = article.title;
-    
+
     body.innerHTML = `
         <div class="row">
             <div class="col-md-4">
@@ -367,14 +387,14 @@ function openNewsModal(newsId) {
             </div>
         </div>
     `;
-    
+
     const bootstrapModal = new bootstrap.Modal(modal);
     bootstrapModal.show();
 }
 
 // Sort News
 function sortNews(sortType) {
-    switch(sortType) {
+    switch (sortType) {
         case 'newest':
             filteredArticles.sort((a, b) => new Date(b.date) - new Date(a.date));
             break;
@@ -385,7 +405,7 @@ function sortNews(sortType) {
             filteredArticles.sort((a, b) => b.featured - a.featured);
             break;
     }
-    
+
     currentPage = 1;
     displayArticles();
     setupPagination();
@@ -395,7 +415,7 @@ function sortNews(sortType) {
 function setupSearch() {
     const searchInput = document.getElementById('searchInput');
     if (!searchInput) return;
-    
+
     searchInput.addEventListener('input', debounce(performSearch, 300));
 }
 
@@ -403,17 +423,17 @@ function setupSearch() {
 function performSearch() {
     const searchInput = document.getElementById('searchInput');
     const query = searchInput.value.toLowerCase().trim();
-    
+
     if (query === '') {
         filteredArticles = [...allArticles];
     } else {
-        filteredArticles = allArticles.filter(article => 
+        filteredArticles = allArticles.filter(article =>
             article.title.toLowerCase().includes(query) ||
             article.summary.toLowerCase().includes(query) ||
             article.category.toLowerCase().includes(query)
         );
     }
-    
+
     currentPage = 1;
     displayArticles();
     setupPagination();
@@ -423,18 +443,18 @@ function performSearch() {
 function setupNewsletterForm() {
     const form = document.getElementById('newsletterForm');
     if (!form) return;
-    
-    form.addEventListener('submit', function(e) {
+
+    form.addEventListener('submit', function (e) {
         e.preventDefault();
-        
+
         const email = this.querySelector('input[type="email"]').value;
-        
+
         // Show loading
         const submitBtn = this.querySelector('button[type="submit"]');
         const originalText = submitBtn.innerHTML;
         submitBtn.innerHTML = '<i class="spinner-border spinner-border-sm me-1"></i>Đang xử lý...';
         submitBtn.disabled = true;
-        
+
         // Simulate API call
         setTimeout(() => {
             alert('Cảm ơn bạn đã đăng ký nhận tin! Chúng tôi sẽ gửi những tin tức mới nhất đến email của bạn.');
@@ -449,34 +469,34 @@ function setupNewsletterForm() {
 function setupContactForm() {
     const form = document.getElementById('contactForm');
     if (!form) return;
-    
-    form.addEventListener('submit', function(e) {
+
+    form.addEventListener('submit', function (e) {
         e.preventDefault();
-        
+
         if (!this.checkValidity()) {
             e.stopPropagation();
             this.classList.add('was-validated');
             return;
         }
-        
+
         const submitBtn = document.getElementById('submitBtn');
         const spinner = document.getElementById('submitSpinner');
-        
+
         // Show loading state
         submitBtn.disabled = true;
         spinner.style.display = 'inline-block';
         submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Đang gửi...';
-        
+
         // Simulate form submission
         setTimeout(() => {
             // Show success modal
             const successModal = new bootstrap.Modal(document.getElementById('successModal'));
             successModal.show();
-            
+
             // Reset form
             this.reset();
             this.classList.remove('was-validated');
-            
+
             // Reset button
             submitBtn.disabled = false;
             spinner.style.display = 'none';
@@ -489,13 +509,13 @@ function setupContactForm() {
 function setupMessageCounter() {
     const messageTextarea = document.getElementById('message');
     const messageCount = document.getElementById('messageCount');
-    
+
     if (!messageTextarea || !messageCount) return;
-    
-    messageTextarea.addEventListener('input', function() {
+
+    messageTextarea.addEventListener('input', function () {
         const currentLength = this.value.length;
         messageCount.textContent = currentLength;
-        
+
         if (currentLength > 450) {
             messageCount.style.color = '#dc3545';
         } else if (currentLength > 400) {
@@ -510,25 +530,25 @@ function setupMessageCounter() {
 function setupReadingProgress() {
     const progressBar = document.getElementById('readingProgressBar');
     const progressPercent = document.getElementById('readingPercent');
-    
+
     if (!progressBar || !progressPercent) return;
-    
+
     window.addEventListener('scroll', () => {
         const article = document.querySelector('.article-content');
         if (!article) return;
-        
+
         const articleTop = article.offsetTop;
         const articleHeight = article.offsetHeight;
         const windowHeight = window.innerHeight;
         const scrollTop = window.scrollY;
-        
+
         const articleStart = articleTop - windowHeight / 2;
         const articleEnd = articleTop + articleHeight - windowHeight / 2;
-        
+
         if (scrollTop >= articleStart && scrollTop <= articleEnd) {
             const progress = ((scrollTop - articleStart) / (articleEnd - articleStart)) * 100;
             const clampedProgress = Math.min(Math.max(progress, 0), 100);
-            
+
             progressBar.style.width = clampedProgress + '%';
             progressPercent.textContent = Math.round(clampedProgress) + '%';
         }
@@ -539,9 +559,9 @@ function setupReadingProgress() {
 function loadRelatedArticles() {
     const container = document.getElementById('relatedArticles');
     if (!container) return;
-    
+
     const relatedArticles = allArticles.slice(0, 3);
-    
+
     let relatedHtml = '';
     relatedArticles.forEach(article => {
         relatedHtml += `
@@ -558,7 +578,7 @@ function loadRelatedArticles() {
             </div>
         `;
     });
-    
+
     container.innerHTML = relatedHtml;
 }
 
@@ -566,11 +586,11 @@ function loadRelatedArticles() {
 function loadMostReadArticles() {
     const container = document.getElementById('mostReadArticles');
     if (!container) return;
-    
+
     const mostReadArticles = allArticles
         .sort((a, b) => b.views - a.views)
         .slice(0, 5);
-    
+
     let mostReadHtml = '';
     mostReadArticles.forEach((article, index) => {
         mostReadHtml += `
@@ -585,7 +605,7 @@ function loadMostReadArticles() {
             </div>
         `;
     });
-    
+
     container.innerHTML = mostReadHtml;
 }
 
@@ -593,10 +613,10 @@ function loadMostReadArticles() {
 function shareArticle(platform) {
     const url = window.location.href;
     const title = document.querySelector('.article-title')?.textContent || 'VietNews';
-    
+
     let shareUrl = '';
-    
-    switch(platform) {
+
+    switch (platform) {
         case 'facebook':
             shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
             break;
@@ -607,7 +627,7 @@ function shareArticle(platform) {
             shareUrl = `https://wa.me/?text=${encodeURIComponent(title + ' ' + url)}`;
             break;
     }
-    
+
     if (shareUrl) {
         window.open(shareUrl, '_blank', 'width=600,height=400');
     }
@@ -633,10 +653,10 @@ function debounce(func, wait) {
 }
 
 // File Upload Progress (for contact form)
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const fileInput = document.getElementById('attachment');
     if (fileInput) {
-        fileInput.addEventListener('change', function() {
+        fileInput.addEventListener('change', function () {
             if (this.files.length > 0) {
                 simulateFileUpload();
             }
@@ -647,11 +667,11 @@ document.addEventListener('DOMContentLoaded', function() {
 function simulateFileUpload() {
     const progressContainer = document.getElementById('uploadProgress');
     const progressBar = document.getElementById('uploadProgressBar');
-    
+
     if (!progressContainer || !progressBar) return;
-    
+
     progressContainer.style.display = 'block';
-    
+
     let progress = 0;
     const interval = setInterval(() => {
         progress += Math.random() * 30;
