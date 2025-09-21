@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết tin tức - VietNews</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../asset/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Reading Progress Bar -->
+    <div id="progressBar" class="progress-bar-top"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="fas fa-newspaper me-2"></i>VietNews
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fas fa-home me-1"></i>Trang chủ
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-list me-1"></i>Danh mục
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-globe me-2"></i>Thế giới</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-chart-line me-2"></i>Kinh tế</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-futbol me-2"></i>Thể thao</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-laptop me-2"></i>Công nghệ</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">
+                            <i class="fas fa-info-circle me-1"></i>Giới thiệu
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">
+                            <i class="fas fa-envelope me-1"></i>Liên hệ
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="bg-light">
+        <div class="container">
+            <ol class="breadcrumb py-3 mb-0">
+                <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="#">Kinh tế</a></li>
+                <li class="breadcrumb-item active">GDP Việt Nam tăng trường mạnh</li>
+            </ol>
+        </div>
+    </nav>
+
+    <!-- Article Content -->
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-lg-8">
+                <article class="article-content">
+                    <div class="article-meta mb-3">
+                        <span class="badge bg-primary me-2">Kinh tế</span>
+                        <span class="text-muted">
+                            <i class="fas fa-calendar me-1"></i>15/01/2025
+                            <i class="fas fa-user ms-3 me-1"></i>Nguyễn Văn An
+                        </span>
+                    </div>
+
+                    <h1 class="article-title mb-4">GDP Việt Nam tăng trưởng mạnh 7.8% trong quý III, vượt kỳ vọng của các chuyên gia</h1>
+
+                    <div class="article-image mb-4">
+                        <img src="../asset/img/pexels-photo-518543.webp" class="img-fluid rounded" alt="GDP Việt Nam">
+                        <figcaption class="text-center text-muted mt-2">
+                            <small>Nền kinh tế Việt Nam đang có những dấu hiệu phục hồi tích cực</small>
+                        </figcaption>
+                    </div>
+
+                    <div class="article-summary bg-light p-3 rounded mb-4">
+                        <h5>Tóm tắt:</h5>
+                        <p class="mb-0">GDP quý III của Việt Nam tăng 7.8% so với cùng kỳ năm trước, cao hơn dự báo 6.5% của các chuyên gia. Đây là mức tăng trưởng cao nhất trong 5 quý gần đây, cho thấy nền kinh tế đang phục hồi mạnh mẽ.</p>
+                    </div>
+
+                    <!-- Reading Progress -->
+                    <div class="reading-progress mb-4">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="text-muted">Tiến độ đọc:</span>
+                            <span class="text-primary" id="readingPercent">0%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" id="readingProgressBar" role="progressbar" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="article-body">
+                        <p class="lead">Theo báo cáo mới nhất từ Tổng cục Thống kê, tốc độ tăng trưởng GDP quý III/2025 đạt 7.8%, cao hơn đáng kể so với mức 6.2% của quý II và vượt xa dự báo 6.5% của các chuyên gia kinh tế.</p>
+
+                        <h3>Các yếu tố thúc đẩy tăng trưởng</h3>
+                        <p>Sự phục hồi mạnh mẽ này được thúc đẩy bởi nhiều yếu tố tích cực:</p>
+                        
+                        <ul>
+                            <li><strong>Xuất khẩu tăng mạnh:</strong> Kim ngạch xuất khẩu tăng 12.3% so với cùng kỳ năm trước, với các mặt hàng điện tử, dệt may và nông sản dẫn đầu.</li>
+                            <li><strong>Đầu tư FDI tích cực:</strong> Vốn FDI đăng ký mới đạt 15.2 tỷ USD, tăng 8.9% so với cùng kỳ.</li>
+                            <li><strong>Tiêu dùng trong nước phục hồi:</strong> Doanh số bán lẻ hàng hóa tăng 9.1%, phản ánh sự lạc quan của người tiêu dùng.</li>
+                        </ul>
+
+                        <div class="alert alert-info" role="alert">
+                            <h5 class="alert-heading"><i class="fas fa-info-circle me-2"></i>Quan trọng</h5>
+                            Đây là mức tăng trưởng cao nhất kể từ quý II/2020, đánh dấu sự phục hồi mạnh mẽ của nền kinh tế sau những thách thức của đại dịch.
+                        </div>
+
+                        <h3>Triển vọng những tháng cuối năm</h3>
+                        <p>Các chuyên gia dự báo momentum tích cực này sẽ tiếp tục duy trì trong quý IV với những yếu tố hỗ trợ:</p>
+
+                        <blockquote class="blockquote border-start border-primary border-3 ps-3 my-4">
+                            <p>"Với những chính sách hỗ trợ kịp thời và sự phục hồi của thương mại quốc tế, chúng tôi kỳ vọng GDP cả năm 2025 có thể đạt mức tăng trưởng 6.8-7.0%"</p>
+                            <footer class="blockquote-footer">
+                                TS. Nguyễn Minh Thảo, <cite>Viện Nghiên cứu Kinh tế Quốc gia</cite>
+                            </footer>
+                        </blockquote>
+
+                        <p>Bên cạnh đó, Chính phủ cũng đang triển khai nhiều gói kích thích kinh tế nhằm hỗ trợ doanh nghiệp và người dân vượt qua khó khăn...</p>
+
+                        <h3>Tác động đến thị trường chứng khoán</h3>
+                        <p>Thông tin tích cực về GDP đã tác động mạnh đến thị trường chứng khoán Việt Nam. VN-Index đã tăng 2.3% trong phiên giao dịch ngay sau khi thông tin được công bố, với các cổ phiếu ngân hàng và bất động sản dẫn đầu đà tăng.</p>
+                    </div>
+
+                    <!-- Social Share -->
+                    <div class="social-share my-4 p-3 bg-light rounded">
+                        <h6>Chia sẻ bài viết:</h6>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-primary btn-sm" onclick="shareArticle('facebook')">
+                                <i class="fab fa-facebook-f me-1"></i>Facebook
+                            </button>
+                            <button class="btn btn-info btn-sm" onclick="shareArticle('twitter')">
+                                <i class="fab fa-twitter me-1"></i>Twitter
+                            </button>
+                            <button class="btn btn-success btn-sm" onclick="shareArticle('whatsapp')">
+                                <i class="fab fa-whatsapp me-1"></i>WhatsApp
+                            </button>
+                            <button class="btn btn-secondary btn-sm" onclick="copyLink()">
+                                <i class="fas fa-link me-1"></i>Sao chép link
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Tags -->
+                    <div class="article-tags">
+                        <h6>Thẻ:</h6>
+                        <span class="badge bg-secondary me-1">GDP</span>
+                        <span class="badge bg-secondary me-1">Kinh tế</span>
+                        <span class="badge bg-secondary me-1">Tăng trưởng</span>
+                        <span class="badge bg-secondary me-1">Việt Nam</span>
+                        <span class="badge bg-secondary">Xuất khẩu</span>
+                    </div>
+                </article>
+
+                <!-- Related Articles -->
+                <div class="related-articles mt-5">
+                    <h4>Bài viết liên quan</h4>
+                    <div class="row" id="relatedArticles">
+                        <!-- Related articles will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Table of Contents -->
+                <div class="card mb-4 shadow-sm sticky-top" style="top: 100px;">
+                    <div class="card-header bg-primary text-white">
+                        <h6 class="mb-0">
+                            <i class="fas fa-list me-2"></i>Mục lục
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled toc-list">
+                            <li><a href="#" class="text-decoration-none">Các yếu tố thúc đẩy tăng trưởng</a></li>
+                            <li><a href="#" class="text-decoration-none">Triển vọng những tháng cuối năm</a></li>
+                            <li><a href="#" class="text-decoration-none">Tác động đến thị trường chứng khoán</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Most Read -->
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header bg-danger text-white">
+                        <h6 class="mb-0">
+                            <i class="fas fa-fire me-2"></i>Đọc nhiều nhất
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="most-read" id="mostReadArticles">
+                            <!-- Most read articles will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white">
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>VietNews</h5>
+                    <p>Cập nhật tin tức nhanh chóng và chính xác nhất</p>
+                </div>
+                <div class="col-md-4">
+                    <h6>Danh mục</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50" style="text-decoration: none;">Thế giới</a></li>
+                        <li><a href="#" class="text-white-50" style="text-decoration: none;">Kinh tế</a></li>
+                        <li><a href="#" class="text-white-50" style="text-decoration: none;">Thể thao</a></li>
+                        <li><a href="#" class="text-white-50" style="text-decoration: none;">Công nghệ</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6>Liên hệ</h6>
+                    <p class="text-white-50 mb-1">
+                        <i class="fas fa-envelope me-2"></i>info@tintuc24h.com
+                    </p>
+                    <p class="text-white-50">
+                        <i class="fas fa-phone me-2"></i>+84 123 456 789
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../asset/js/script.js"></script>
+</body>
+</html>

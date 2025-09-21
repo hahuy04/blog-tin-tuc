@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới thiệu - VietNews</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../asset/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="fas fa-newspaper me-2"></i>VietNews
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fas fa-home me-1"></i>Trang chủ
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button"
+                            data-bs-toggle="dropdown">
+                            <i class="fas fa-list me-1"></i>Danh mục
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-globe me-2"></i>Thế giới</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-chart-line me-2"></i>Kinh tế</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-futbol me-2"></i>Thể thao</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-laptop me-2"></i>Công nghệ</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about.html">
+                            <i class="fas fa-info-circle me-1"></i>Giới thiệu
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">
+                            <i class="fas fa-envelope me-1"></i>Liên hệ
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section bg-primary text-white py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-4">Về VietNews</h1>
+                    <p class="lead">Nguồn tin tức uy tín, cập nhật nhanh chóng và chính xác nhất tại Việt Nam</p>
+                </div>
+                <div class="col-lg-6">
+                    <img src="../asset/img/pexels-photo-97080.webp" class="img-fluid rounded" alt="Về chúng tôi">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Mission Section -->
+                <section class="mb-5">
+                    <h2 class="section-title mb-4">
+                        <i class="fas fa-bullseye text-primary me-2"></i>Sứ mệnh của chúng tôi
+                    </h2>
+                    <p class="lead">VietNews ra đời với sứ mệnh mang đến cho bạn đọc những thông tin tin tức nhanh
+                        chóng, chính xác và khách quan nhất về mọi lĩnh vực của cuộc sống.</p>
+                    <p>Chúng tôi cam kết cung cấp những bản tin chất lượng cao, được kiểm chứng kỹ lưỡng từ đội ngũ
+                        phóng viên và biên tập viên giàu kinh nghiệm.</p>
+
+                    <!-- Progress bars showing our stats -->
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <h6>Độ chính xác thông tin</h6>
+                            <div class="progress mb-3">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 98%"
+                                    aria-valuenow="98" aria-valuemin="0" aria-valuemax="100">98%</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Tốc độ cập nhật</h6>
+                            <div class="progress mb-3">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: 95%"
+                                    aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">95%</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Độ hài lòng của độc giả</h6>
+                            <div class="progress mb-3">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 92%"
+                                    aria-valuenow="92" aria-valuemin="0" aria-valuemax="100">92%</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Phủ sóng toàn quốc</h6>
+                            <div class="progress mb-3">
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: 100%"
+                                    aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- History Section -->
+                <section class="mb-5">
+                    <h2 class="section-title mb-4">
+                        <i class="fas fa-history text-primary me-2"></i>Lịch sử hình thành
+                    </h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-marker bg-primary"></div>
+                            <div class="timeline-content">
+                                <h5>2020 - Khởi đầu</h5>
+                                <p>VietNews được thành lập với đội ngũ 10 người, xuất phát từ ý tưởng tạo ra một nền
+                                    tảng tin tức trực tuyến hiện đại.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker bg-success"></div>
+                            <div class="timeline-content">
+                                <h5>2021 - Phát triển</h5>
+                                <p>Mở rộng đội ngũ lên 50 người và ra mắt ứng dụng di động, thu hút hơn 100,000 người
+                                    đọc thường xuyên.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker bg-info"></div>
+                            <div class="timeline-content">
+                                <h5>2022 - Mở rộng</h5>
+                                <p>Thiết lập mạng lưới phóng viên tại 63 tỉnh thành và đạt mốc 500,000 độc giả hàng
+                                    tháng.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker bg-warning"></div>
+                            <div class="timeline-content">
+                                <h5>2023 - Hiện đại hóa</h5>
+                                <p>Ứng dụng trí tuệ nhân tạo trong phân tích tin tức và cá nhân hóa nội dung cho từng
+                                    độc giả.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker bg-danger"></div>
+                            <div class="timeline-content">
+                                <h5>2024-2025 - Tương lai</h5>
+                                <p>Tiếp tục đầu tư vào công nghệ và mở rộng ra thị trường quốc tế, mục tiêu trở thành
+                                    kênh tin tức hàng đầu khu vực.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Values Section -->
+                <section class="mb-5">
+                    <h2 class="section-title mb-4">
+                        <i class="fas fa-heart text-primary me-2"></i>Giá trị cốt lõi
+                    </h2>
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="value-card h-100 p-4 bg-light rounded">
+                                <div class="text-center mb-3">
+                                    <i class="fas fa-shield-alt fa-3x text-primary"></i>
+                                </div>
+                                <h5 class="text-center">Tin cậy</h5>
+                                <p class="text-center">Mọi thông tin được kiểm chứng kỹ lưỡng trước khi đăng tải</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="value-card h-100 p-4 bg-light rounded">
+                                <div class="text-center mb-3">
+                                    <i class="fas fa-bolt fa-3x text-success"></i>
+                                </div>
+                                <h5 class="text-center">Nhanh chóng</h5>
+                                <p class="text-center">Cập nhật tin tức trong thời gian thực, 24/7</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="value-card h-100 p-4 bg-light rounded">
+                                <div class="text-center mb-3">
+                                    <i class="fas fa-balance-scale fa-3x text-info"></i>
+                                </div>
+                                <h5 class="text-center">Khách quan</h5>
+                                <p class="text-center">Truyền tải thông tin một cách trung thực và công bằng</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="value-card h-100 p-4 bg-light rounded">
+                                <div class="text-center mb-3">
+                                    <i class="fas fa-users fa-3x text-warning"></i>
+                                </div>
+                                <h5 class="text-center">Gần gũi</h5>
+                                <p class="text-center">Hiểu và lắng nghe ý kiến của độc giả</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Statistics -->
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-chart-bar me-2"></i>Thống kê
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="stat-item mb-3">
+                            <div class="d-flex justify-content-between">
+                                <span>Độc giả hàng tháng:</span>
+                                <strong class="text-primary">2.5M+</strong>
+                            </div>
+                            <div class="progress mt-1">
+                                <div class="progress-bar" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="stat-item mb-3">
+                            <div class="d-flex justify-content-between">
+                                <span>Bài viết mỗi ngày:</span>
+                                <strong class="text-success">150+</strong>
+                            </div>
+                            <div class="progress mt-1">
+                                <div class="progress-bar bg-success" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        <div class="stat-item mb-3">
+                            <div class="d-flex justify-content-between">
+                                <span>Phóng viên:</span>
+                                <strong class="text-info">200+</strong>
+                            </div>
+                            <div class="progress mt-1">
+                                <div class="progress-bar bg-info" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="d-flex justify-content-between">
+                                <span>Tỉnh thành phủ sóng:</span>
+                                <strong class="text-warning">63/63</strong>
+                            </div>
+                            <div class="progress mt-1">
+                                <div class="progress-bar bg-warning" style="width: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team -->
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-user-friends me-2"></i>Đội ngũ VietNews
+                        </h5>
+                    </div>
+
+                    <div class="card-body">
+                        <!-- Bùi Mạnh Tuấn -->
+                        <div class="team-member mb-3">
+                            <div class="d-flex align-items-center">
+                                <img src="../asset/img/bui-manh-tuan.jpg" class="rounded-circle me-3" width="60"
+                                    height="60" alt="Bùi Mạnh Tuấn">
+                                <div>
+                                    <h6 class="mb-1">Bùi Mạnh Tuấn
+                                        <span class="badge bg-success ms-2">Lead</span>
+                                    </h6>
+                                    <small class="text-muted d-block">Đồng Sáng Lập & Kiến Trúc Sư Sản Phẩm</small>
+                                    <small class="text-muted">Trưởng Nhóm Kỹ Thuật</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hoàng Đức Thịnh -->
+                        <div class="team-member mb-3">
+                            <div class="d-flex align-items-center">
+                                <img src="../asset/img/hoang-duc-thinh.jpg" class="rounded-circle me-3" width="60"
+                                    height="60" alt="Hoàng Đức Thịnh">
+                                <div>
+                                    <h6 class="mb-1">Hoàng Đức Thịnh
+                                        <span class="badge bg-primary ms-2">Web</span>
+                                    </h6>
+                                    <small class="text-muted d-block">Kỹ Sư Chính</small>
+                                    <small class="text-muted">Phó Phụ Trách Kỹ Thuật</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hà Đức Huy -->
+                        <div class="team-member mb-3">
+                            <div class="d-flex align-items-center">
+                                <img src="../asset/img/ha-duc-huy.jpg" class="rounded-circle me-3" width="60"
+                                    height="60" alt="Hà Đức Huy">
+                                <div>
+                                    <h6 class="mb-1">Hà Đức Huy
+                                        <span class="badge bg-warning text-dark ms-2">Design</span>
+                                    </h6>
+                                    <small class="text-muted d-block">Giám Đốc Trình Bày & Thương Hiệu</small>
+                                    <small class="text-muted">Design Lead</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hoàng Văn An -->
+                        <div class="team-member mb-3">
+                            <div class="d-flex align-items-center">
+                                <img src="../asset/img/hoang-van-an.jpg" class="rounded-circle me-3" width="60"
+                                    height="60" alt="Hoàng Văn An">
+                                <div>
+                                    <h6 class="mb-1">Hoàng Văn An
+                                        <span class="badge bg-danger ms-2">Comms</span>
+                                    </h6>
+                                    <small class="text-muted d-block">Trưởng Ban Truyền Thông & Thuyết Trình</small>
+                                    <small class="text-muted">Lead Presenter</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cao Thành Luân -->
+                        <div class="team-member mb-3">
+                            <div class="d-flex align-items-center">
+                                <img src="../asset/img/cao-thanh-luan.jpg" class="rounded-circle me-3" width="60"
+                                    height="60" alt="Cao Thành Luân">
+                                <div>
+                                    <h6 class="mb-1">Cao Thành Luân
+                                        <span class="badge bg-info text-dark ms-2">Strategy</span>
+                                    </h6>
+                                    <small class="text-muted d-block">Cố Vấn Chiến Lược & Ý Tưởng</small>
+                                    <small class="text-muted">Idea Strategist</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Nguyễn Đức Hùng -->
+                        <div class="team-member">
+                            <div class="d-flex align-items-center">
+                                <img src="../asset/img/nguyen-duc-hung.jpg" class="rounded-circle me-3" width="60"
+                                    height="60" alt="Nguyễn Đức Hùng">
+                                <div>
+                                    <h6 class="mb-1">Nguyễn Đức Hùng
+                                        <span class="badge bg-secondary ms-2">Insights</span>
+                                    </h6>
+                                    <small class="text-muted d-block">Cố Vấn Nội Dung & Kiểm Chứng Thông Tin</small>
+                                    <small class="text-muted">Content & Fact-check Advisor</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Contact CTA -->
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <h5>Liên hệ với chúng tôi</h5>
+                        <p class="text-muted">Có câu hỏi hay góp ý? Chúng tôi luôn sẵn sàng lắng nghe!</p>
+                        <a href="contact.html" class="btn btn-primary">
+                            <i class="fas fa-envelope me-1"></i>Liên hệ ngay
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white">
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>VietNews</h5>
+                    <p>Cập nhật tin tức nhanh chóng và chính xác nhất</p>
+                    <div class="social-links">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h6>Danh mục</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50" style="text-decoration: none;">Thế giới</a></li>
+                        <li><a href="#" class="text-white-50" style="text-decoration: none;">Kinh tế</a></li>
+                        <li><a href="#" class="text-white-50" style="text-decoration: none;">Thể thao</a></li>
+                        <li><a href="#" class="text-white-50" style="text-decoration: none;">Công nghệ</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6>Liên hệ</h6>
+                    <p class="text-white-50 mb-1">
+                        <i class="fas fa-envelope me-2"></i>info@tintuc24h.com
+                    </p>
+                    <p class="text-white-50">
+                        <i class="fas fa-phone me-2"></i>+84 123 456 789
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="bg-secondary py-3">
+            <div class="container text-center">
+                <p class="mb-0">&copy; 2025 VietNews. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../asset/js/script.js"></script>
+</body>
+
+</html>
